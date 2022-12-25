@@ -17,23 +17,25 @@ setup_terminal() {
         brew install zsh
     fi
 
-    echo "=> Installing oh-my-zsh"
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    if [[ ! -d $HOME/.oh-my-zsh ]]; then
+        echo "=> Installing oh-my-zsh"
+        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-    echo "=> Installing zsh-autosuggestions"
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        echo "=> Installing zsh-autosuggestions"
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-    echo "=> Installing zsh-syntax-highlighting"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        echo "=> Installing zsh-syntax-highlighting"
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-    echo "=> Installing powerlevel10k"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+        echo "=> Installing powerlevel10k"
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-    echo "=> Importing zshrc"
-    ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
+        echo "=> Importing zshrc"
+        ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
 
-    echo "=> Importing powerlevel10k"
-    ln -s $HOME/.dotfiles/.p10k.zsh $HOME/.p10k.zsh
+        echo "=> Importing powerlevel10k"
+        ln -s $HOME/.dotfiles/.p10k.zsh $HOME/.p10k.zsh
+    fi
 }
 
 setup_terminal
